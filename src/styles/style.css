@@ -67,4 +67,30 @@ code {
 
 .login__label {
   margin-right: 160px;
+}
+
+.screen__1 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.screen__header {
+  color: #323232;
+}
+
+.screen__subheader r {
+  color: #373737;
+}
+
+.card {
+  width: 250px;
+}
+.card:hover {
+  width: 350px;
+  cursor: -webkit-grab;
+  cursor: grab;
 }/*# sourceMappingURL=style.css.map */
