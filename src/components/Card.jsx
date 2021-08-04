@@ -12,7 +12,7 @@ function Card({ src, id }) {
   return (
     <img
       ref={drag}
-      src={src}
+      src={`../assets/1/${src}.jpg`}
       id={id}
       alt='drag-card'
       width='250px'

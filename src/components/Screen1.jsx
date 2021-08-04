@@ -2,20 +2,13 @@ import React, { useEffect, useState } from 'react'
 import '../styles/style.css'
 import { useDrop } from 'react-dnd'
 import Card from './Card'
+import { week1cardList } from '../imageRender/imageRender'
 
 function Screens() {
   const [board, setBoard] = useState([])
-  const cardList = []
-
-  const loadWeek1Images = (week) => {
-    for (let i = 0; i <= 33; i++) {
-      cardList.push({ src: `../assets/1/${i}.jpg`, id: i })
-    }
-  }
 
   useEffect(() => {
-    loadWeek1Images(1)
-    console.log(cardList)
+    console.log(week1cardList)
   }, [])
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -26,7 +19,9 @@ function Screens() {
     }),
   }))
 
-  const addImageToBoard = (id) => {}
+  const addImageToBoard = (id) => {
+    console.log(id)
+  }
 
   return (
     <div className='screen__1'>
@@ -42,8 +37,14 @@ function Screens() {
         You will be shown a card like the one below. Hover over the card and
         click to drag it.
       </h2>
-      {cardList.map((card) => {
-        return <Card src={card.src} id={card.id} key={card.id} />
+      {week1cardList.map((card) => {
+        return (
+          <img
+            url={require('../assets/1/' + card.src + '.jpg')}
+            alt='card-img'
+            className='card'
+          />
+        )
       })}
       <div className='drag__container'>
         <div className='drag__card'>
