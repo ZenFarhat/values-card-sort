@@ -131,6 +131,8 @@ code {
 
 .card__drag-area {
   flex: 5;
+  height: 100%;
+  width: 100%;
 }
 
 .card__header {

@@ -1,8 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/style.css'
-import card0 from '../assets/1/0.jpg'
+import { useDrop } from 'react-dnd'
+import Card from './Card'
 
 function Screens() {
+  const [board, setBoard] = useState([])
+  const cardList = []
+
+  const loadWeek1Images = (week) => {
+    for (let i = 0; i <= 33; i++) {
+      cardList.push({ src: `../assets/1/${i}.jpg`, id: i })
+    }
+  }
+
+  useEffect(() => {
+    loadWeek1Images(1)
+    console.log(cardList)
+  }, [])
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'image',
+    drop: (item) => addImageToBoard(item.id),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }))
+
+  const addImageToBoard = (id) => {}
+
   return (
     <div className='screen__1'>
       <div className='screen__header-container'>
@@ -17,11 +42,13 @@ function Screens() {
         You will be shown a card like the one below. Hover over the card and
         click to drag it.
       </h2>
-      <img src={card0} alt='' className='card' />
+      {cardList.map((card) => {
+        return <Card src={card.src} id={card.id} key={card.id} />
+      })}
       <div className='drag__container'>
         <div className='drag__card'>
           <h1 className='card__header'>Very important to me</h1>
-          <div className='card__drag-area'></div>
+          <div className='card__drag-area' ref={drop}></div>
         </div>
         <div className='drag__card'>
           <h1 className='card__header'>Important to me</h1>
