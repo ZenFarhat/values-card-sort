@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/style.css'
+import Login from './components/Login'
+import { useState } from 'react'
+import Screen1 from './components/Screen1'
+import { LoginContext } from './Contexts/LoginContext'
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <LoginContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+        {isLoggedIn ? <Screen1 /> : <Login />}
+      </LoginContext.Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
